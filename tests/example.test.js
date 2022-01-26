@@ -13,9 +13,19 @@ describe('My First Puppeteer Test', () => {
         page = await browser.newPage();
     });
 
+    beforeEach(async function() {
+
+    });
+
+    afterEach(async function() {
+
+    });
+
+    after(async function() {
+        await browser.close();
+    });
+
     it('Should launch browser', async function() {
-
-
         await page.goto('http://example.com');
         await page.waitForXPath('//h1');
         const title = await page.title();
@@ -26,6 +36,7 @@ describe('My First Puppeteer Test', () => {
         await page.keyboard.press('Enter', { delay: 10 });
         await page.waitForTimeout(() => !document.querySelector('#button'));
         await page.waitForSelector('#button', { hidden: true });
-        await browser.close();
     });
+
+
 });
