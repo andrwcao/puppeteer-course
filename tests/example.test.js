@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
 const { expect } = require('chai');
+
+const { click, getText, getCount } = require('../lib/helpers');
+
 describe('My First Puppeteer Test', () => {
     let browser;
     let page;
@@ -25,18 +28,12 @@ describe('My First Puppeteer Test', () => {
         await browser.close();
     });
 
-    it('Should launch browser', async function() {
-        await page.goto('http://example.com');
-        await page.waitForXPath('//h1');
-        const title = await page.title();
-        const url = await page.url();
-        const count = await page.$$eval('p', element => element.length);
-        console.log(count);
-        expect(title).to.be.equal('string', ' Domain');
-        await page.keyboard.press('Enter', { delay: 10 });
-        await page.waitForTimeout(() => !document.querySelector('#button'));
-        await page.waitForSelector('#button', { hidden: true });
+    it('Browser tests', async function() {
+        await page.goto('http://zero.webappsecurity.com/index.html');
+        await click(page, '#feedback');
+        await getText(page, 'h3');
+        await getCount(page, 'p');
     });
-
+    
 
 });
