@@ -18,7 +18,6 @@ describe('Device Emulation', () => {
 
     after(async function(){
         await browser.close();
-        //test
     });
 
     it('Desktop Device Test', async function(){
