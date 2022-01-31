@@ -35,4 +35,35 @@ describe('Visual Regression Testing', () => {
             failureThreshold: 0.01,
         })
     })
+
+    test('Mobile Snapshot', async function() {
+        await page.emulate(puppeteer.devices['iPhone X'])
+        await page.goto('https://www.example.com')
+        const h1 = await page.waitForSelector('h1')
+        const image = await h1.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01,
+        })
+    })
+
+    test('Mobile Full Snapshot', async function() {
+        await page.emulate(puppeteer.devices['iPhone X'])
+        await page.goto('https://www.example.com')
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01,
+        })
+    })
+
+    test('Tablet Full Snapshot', async function() {
+        await page.emulate(puppeteer.devices['iPad landscape'])
+        await page.goto('https://www.example.com')
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01,
+        })
+    })
 })
