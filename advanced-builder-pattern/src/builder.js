@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer'
 export default class Builder {
     static async build(viewport){
         const launchOptions = {
-            headless: true,
+            headless: false,
             slowMo: 0,
             args: [
                 '--no sandbox', 
@@ -52,5 +52,46 @@ export default class Builder {
     async waitAndType(selector, text) {
         await this.page.waitForSelector(selector)
         await this.page.type(selector, text)
+    }
+
+    async getText(selector) {
+        await this.page.waitForSelector(selector)
+        const text = await this.page.$eval(selector, e => e.innerHTML)
+        return text
+    }
+
+    async getCount(selector) {
+        await this.page.waitForSelector(selector)
+        const count = await this.page.$$eval(selector, items => items.length)
+        return count
+    }
+
+    async waitForXPathAndClick(xPath) {
+        await this.page.waitForXPath(xPath)
+        const elements = await this.page.$x(xPath)
+        if (elements.length > 1) {
+            console.warn('waitForXPathAndClick returned more than one results')
+        }
+        await elements[0].click();
+    }
+
+    async isElementVisible(selector) {
+        let visible = true
+        await this.page
+            .waitForSelector(selector, { visible: true, timeout: 5000 })
+            .catch(() => {
+                visible = false
+            })
+        return visible
+    }
+
+    async isXPathVisible(xPath) {
+        let visible = true
+        await this.page
+            .waitForXPath(xPath, { visible: true, timeout: 5000 })
+            .catch(() => {
+                visible = false
+            })
+        return visible
     }
 }

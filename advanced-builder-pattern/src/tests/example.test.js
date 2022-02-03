@@ -17,7 +17,9 @@ describe('Mocha steps', () => {
     })
 
     step('should load google homepage', async () => {
-        await desktop.goto('https://google.com');
+        await desktop.goto('http://zero.webappsecurity.com/index.html')
+        await desktop.waitAndClick('#onlineBankingMenu')
+        await desktop.waitForTimeout(5000)
     })
 
     step('step 2', async () => {
