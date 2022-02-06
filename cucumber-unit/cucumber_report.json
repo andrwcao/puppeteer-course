@@ -1,0 +1,93 @@
+[
+  {
+    "description": "    As a user\n    I can login to application",
+    "elements": [
+      {
+        "description": "",
+        "id": "login;user-can-login-to-application",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "User can login to application",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 351000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I open login page",
+            "match": {
+              "location": "features\\support\\step.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2511000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I fill login form",
+            "match": {
+              "location": "features\\support\\step.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 8,
+            "name": "I click on submit button",
+            "match": {
+              "location": "features\\support\\step.js:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I expect to see application content",
+            "match": {
+              "location": "features\\support\\step.js:23"
+            },
+            "result": {
+              "status": "failed",
+              "duration": 5016000000,
+              "error_message": "Error: function timed out, ensure the promise resolves within 5000 milliseconds\n    at Timeout._onTimeout (C:\\Users\\An Cao\\Desktop\\My Apps\\puppeteer-course\\cucumber-unit\\node_modules\\@cucumber\\cucumber\\lib\\user_code_runner.js:63:28)\n    at listOnTimeout (internal/timers.js:554:17)\n    at processTimers (internal/timers.js:497:7)"
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 193000000
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "login",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Login",
+    "tags": [],
+    "uri": "features\\support\\login.feature"
+  }
+]
