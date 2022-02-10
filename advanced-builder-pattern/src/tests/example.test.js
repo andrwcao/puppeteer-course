@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { step } from 'mocha-steps'
 import Page from '../builder.js'
 describe('Mocha steps', () => {
@@ -18,19 +19,22 @@ describe('Mocha steps', () => {
 
     step('should load google homepage', async () => {
         await desktop.goto('http://zero.webappsecurity.com/index.html')
-        await desktop.waitAndClick('#onlineBankingMenu')
-        await desktop.waitForTimeout(5000)
+        const signInButtonVisible = await desktop.isElementVisible('#signin_button')
+        expect(signInButtonVisible).to.be.true
     })
 
-    step('step 2', async () => {
-
+    step('should go to login form', async () => {
+        await desktop.waitAndClick('#signin_button')
+        const loginFormVisible = await desktop.isElementVisible('#login_form')
+        expect(loginFormVisible).to.be.true
     })
 
-    step('step 3', async () => {
-        
+    step('should login to application', async () => {
+        await desktop.waitAndType('#user_login', 'username')
+        await desktop.waitAndType('#user_password', 'password')
+        await desktop.waitAndClick('.btn-primary')
+        const navbar = await desktop.isElementVisible('.nav-tabs')
+        expect(navbar).to.be.true
     })
 
-    step('step 4', async () => {
-        
-    })
 })
