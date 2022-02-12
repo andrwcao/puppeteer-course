@@ -39,26 +39,37 @@ const geolocation = async () => {
     await browser.close();
 };
 
-(async () => {
+const accessibility = async () => {
     const browser = await puppeteer.launch({ headless: false});
     const page = await browser.newPage();
-    await page.emulate(puppeteer.devices["iPhone X"]);
-    await page.goto('https://www.example.com');
+
+    await page.goto('https://pptr.dev');
+    await page.waitForSelector("title");
+
+    const snapshot = await page.accessibility.snapshot();
+    console.log(snapshot);
     await browser.close();
-})();
+};
+
+const performance = async () => {
+    const browser = await puppeteer.launch({ headless: false});
+    const page = await browser.newPage();
+
+    await page.goto('https://pptr.dev');
+    await page.waitForSelector("title");
+    
+    const metrics = await page.evaluate(() => JSON.stringify(window.performance));
+    console.log(JSON.parse(metrics));
+
+    await browser.close();
+};
 
 (async () => {
     const browser = await puppeteer.launch({ headless: false});
     const page = await browser.newPage();
-    await page.emulate(puppeteer.devices["iPhone X"]);
-    await page.goto('https://www.example.com');
-    await browser.close();
-})();
 
-(async () => {
-    const browser = await puppeteer.launch({ headless: false});
-    const page = await browser.newPage();
-    await page.emulate(puppeteer.devices["iPhone X"]);
     await page.goto('https://www.example.com');
+
+    
     await browser.close();
 })();
