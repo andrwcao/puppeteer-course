@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "scrapper": "node scraper.js",
-    "scrapper": "for run in {1..3}; do node scraper.js; done"
+    "scraper": "for run in {1..3}; do node scraper.js; done"
   },
   "author": "andrwcao",
   "license": "ISC",
   "dependencies": {
-    "puppeteer": "^13.3.1"
+    "puppeteer": "^13.3.1",
+    "random-useragent": "^0.5.0"
   }
 }
