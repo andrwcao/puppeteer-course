@@ -64,12 +64,12 @@ const performance = async () => {
     await browser.close();
 };
 
-(async () => {
+const incognito = async () => {
     const browser = await puppeteer.launch({ headless: false});
-    const page = await browser.newPage();
+    const context = await browser.createIncognitoBrowserContext();
+    const page = await context.newPage();
 
     await page.goto('https://www.example.com');
 
-    
     await browser.close();
-})();
+};
